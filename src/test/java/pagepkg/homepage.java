@@ -1,5 +1,7 @@
 package pagepkg;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,8 +19,7 @@ public class homepage {
  //WebElement ekm=driver.findElement(By.xpath("//a[normalize-space()='Ernakulam']"));
  @FindBy (xpath="//a[text()='Ernakulam']")  WebElement ekm;
  //WebElement View=driver.findElement(By.xpath("//div[@class='property-listing']//div[1]//div[1]//a[1]"));
- @FindBy (xpath="///body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]")  WebElement view;
-
+ @FindBy (xpath="//body//div[@class='inner-container']//div[@class='row']//div[@class='row']//div[1]//div[1]//div[1]//a[1]") WebElement view;
  //WebElement name=driver.findElement(By.xpath("//input[@placeholder='Name']"));
  @FindBy (xpath="//input[@placeholder='Name']")  WebElement name;
 
@@ -29,47 +30,53 @@ public class homepage {
  @FindBy (xpath="//input[@placeholder='Email']")  WebElement email;
 
  //WebElement logo=driver.findElement(By.xpath("//img[@alt='Kerala Property']]"));
- @FindBy (xpath="//img[@alt='Kerala Property']]")  WebElement logo;
+ @FindBy (xpath="//img[@alt='Kerala Property']")  WebElement logo;
+ 
+ @FindBy (xpath="/html/body/header/div[2]/div/a[1]/img")
+	WebElement backhomebtn;
  
 
  WebDriver driver;
 
 public homepage(WebDriver driver) 
 {
-this.driver=driver;
-PageFactory.initElements(driver, this);
+	this.driver=driver;
+	 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
+	 PageFactory.initElements(driver, this);
 }
  
-public void findmenu()
+public void findmenu() throws InterruptedException
 {
 	
 	find.click();
 	ekm.click();
-}
-public void view()
-{
+	Thread.sleep(2000);
 	((JavascriptExecutor) driver). executeScript("window. scrollBy(0, 250);");
-	view.click();
 }
-public void quick()
+public void view() throws InterruptedException
 {
+	
+	view.click();
+	Thread.sleep(2000);
+}
+public void quick() throws InterruptedException
+{
+	Thread.sleep(1000);
 	name.sendKeys("Goe");
 	phone.sendKeys("9845467841");
 	email.sendKeys("gk@yopmail.com");
 }
-public void logo()
+public  WebElement verifylogo()
 {
-	if(logo.isDisplayed())
-	{
-		System.out.println("Logo is present");
-	}
-	else
-	{
-		System.out.println("Logo not presnt");
-	}
-
+	return logo;
 }
 
+public void back() throws InterruptedException
+{
+	
+	backhomebtn.click();
+
+}
 
 
 }

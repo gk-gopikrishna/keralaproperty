@@ -5,7 +5,7 @@
     <classes>
       <class name="testpkg.testclass">
         <methods>
-          <include name="kerala"/>
+          <include name="verifylogin"/>
           <include name="Setup"/>
         </methods>
       </class> <!-- testpkg.testclass -->

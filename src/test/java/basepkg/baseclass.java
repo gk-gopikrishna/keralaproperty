@@ -11,7 +11,7 @@ public class baseclass {
 	public void Setup()
 	{
 		driver =new ChromeDriver();
-		driver.get("https://keralaproperty.in/");
+		driver.get("https://keralaproperty.in/member/login/");
 		driver.manage().window().maximize();
 	}
 
